@@ -20,4 +20,3 @@ This project automates data cleaning and reporting using Python.
 - Pandas
 - Matplotlib
 - Seaborn
-- 
