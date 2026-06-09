@@ -1,0 +1,35 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load data
+df = pd.read_csv("data.csv")
+
+print("Original Data:")
+print(df)
+
+# CLEANING
+df = df.drop_duplicates()
+
+df["Age"] = df["Age"].fillna(df["Age"].mean())
+df["Department"] = df["Department"].fillna("Unknown")
+df["Salary"] = df["Salary"].fillna(df["Salary"].mean())
+
+print("\nCleaned Data:")
+print(df)
+
+# REPORT
+print("\n--- REPORT ---")
+print("Total Employees:", len(df))
+print("Average Age:", df["Age"].mean())
+print("Average Salary:", df["Salary"].mean())
+
+# SAVE CLEANED FILE
+df.to_csv("cleaned_data.csv", index=False)
+
+# VISUALIZATION
+plt.figure(figsize=(6,4))
+sns.barplot(x="Name", y="Salary", data=df)
+plt.title("Salary Report")
+plt.xticks(rotation=45)
+plt.show()
